@@ -1,1 +1,18 @@
+#Tomcat Server  
 
+server:
+  port: 8080
+
+# Logger
+logging.level:
+  web: DEBUG
+  '[com.bankofprairies]': DEBUG
+  
+spring:
+  
+  #Database settings
+  datasource: 
+    url: jdbc:mysql://localhost:3306/usersdb
+    username: root
+    password: root
+    
