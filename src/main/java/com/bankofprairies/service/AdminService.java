@@ -18,9 +18,22 @@ public class AdminService {
 		
 		List<CustomerBean> customers = this.customerDao.listCustomers();
 		return customers;
+	}
+	
+	public void addCustomer(CustomerBean customer) {
 		
-		
-		
+		this.validateCustomer(customer);
+		this.customerDao.addCustomer(customer);
 	}
 
+	private void validateCustomer(CustomerBean customer) {
+		
+		if(customer.getFirstName().isEmpty() ||
+		   customer.getLastName().isEmpty() ||
+		   customer.getEmail().isEmpty()) {
+			
+			throw new RuntimeException("Invalid Customer data");
+		}
+	}
+	
 }

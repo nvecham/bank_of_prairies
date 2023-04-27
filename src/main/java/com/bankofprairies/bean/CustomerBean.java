@@ -8,7 +8,9 @@ public class CustomerBean {
 	String firstName;
 	String lastName;
 	Date birth;
-	String Gender;
+	String gender;
+	String username;
+	String password;
 	String email;
 	String mobile;
 	String sin;
@@ -19,20 +21,21 @@ public class CustomerBean {
 	String country;
 	String status;
 	
-	
-	
 	public CustomerBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CustomerBean(int idCustomer, String firstName, String lastName, Date birth, String gender, String email,
-			String mobile, String sin, String street, String city, String province, String zip, String country, String status) {
+	public CustomerBean(int idCustomer, String firstName, String lastName, Date birth, String gender, String username,
+			String password, String email, String mobile, String sin, String street, String city, String province,
+			String zip, String country, String status) {
 		super();
 		this.idCustomer = idCustomer;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birth = birth;
-		Gender = gender;
+		this.gender = gender;
+		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.mobile = mobile;
 		this.sin = sin;
@@ -77,11 +80,27 @@ public class CustomerBean {
 	}
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -123,8 +142,6 @@ public class CustomerBean {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	
 
 	public String getProvince() {
 		return province;
@@ -157,6 +174,19 @@ public class CustomerBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerBean [idCustomer=" + idCustomer + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", birth=" + birth + ", gender=" + gender + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", mobile=" + mobile + ", sin=" + sin + ", street=" + street + ", city=" + city
+				+ ", province=" + province + ", zip=" + zip + ", country=" + country + ", status=" + status + "]";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

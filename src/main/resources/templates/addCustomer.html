@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<title>Customer Registration</title>
+</head>
+
+<body>
+	<div class="container-fluid mt-2">
+		<div th:replace="~{fragments/adminHeader :: header(addcustomer)}"></div>
+
+		<div
+			class="container text-align:center w-75 border bg-white rounded shadow mt-3 mb-3 px-5">
+
+			
+				<h1 class="text-center my-3 display-6">Customer Registration</h1>
+			
+
+			<form action="/addcustomer" method="post" class="mt-2">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="firstName">First Name</label> <input type="text" class="form-control" id="firstName" name="firstName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="lastName">Last Name</label> <input type="text" class="form-control" id="lastName" name="lastName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="birth">Date of birth:</label><input type="date" class="form-control" id="birth" name="birth" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="gender">Gender</label> <select id="gender" name="gender" class="form-control" required>
+							<option value="">--Select--</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="username">Username</label> <input type="text" class="form-control" id="username" name="username" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="password">Password</label> <input type="password" class="form-control" id="password" name="password" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label> <input type="email" class="form-control" id="email" name="email" required>
+				</div>
+
+				<div class="form-group">
+					<label for="mobile">Mobile</label> <input type="tel" class="form-control" id="mobile" name="mobile" required>
+				</div>
+				<div class="form-group">
+					<label for="sin">SIN (Social Insurance Number)</label> <input type="text" class="form-control" id="sin" name="sin" required>
+				</div>
+				<div class="form-group">
+					<label for="street">Street Address</label> <input type="text" class="form-control" id="street" name="street" required>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="city">City</label> <input type="text" class="form-control" id="city" name="city" required>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="province">Province</label> 
+						<select id="province" class="form-control" name="province">
+							<option selected>Choose...</option>
+							<option value="alberta">Alberta</option>
+							<option value="britishColumbia">British Columbia</option>
+							<option value="manitoba">Manitoba</option>
+							<option value="newBrunswick">New Brunswick</option>
+							<option value="newfoundlandandLabrador">Newfoundland and Labrador</option>
+							<option value="northwestTerritories">Northwest Territories</option>
+							<option value="novaScotia">Nova Scotia</option>
+							<option value="nunavut">Nunavut</option>
+							<option value="ontario">Ontario</option>
+							<option value="princeEdwardIsland">Prince Edward Island</option>
+							<option value="quebec">Quebec</option>
+							<option value="saskatchewan">Saskatchewan</option>
+							<option value="yukon">Yukon</option>
+						</select>
+					</div>
+					<div class="form-group col-md-2">
+						<label for="zip">Zip</label> <input type="text" class="form-control" id="zip" name="zip" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="country">Country</label> <input type="text"	class="form-control" id="country" name="country" required>
+				</div>
+				
+				<div class="form-group col-md-2">
+						<label for="status">Active Status</label> <select id="status" name="status" class="form-control" required>
+							<option value="">--Select--</option>
+							<option value="active">Active</option>
+							<option value="inactive">Inactive</option>
+						</select>
+					</div>
+				
+				 <div>
+                    
+                    <button type="submit" class="btn2 btn-primary" onclick="window.location.href='index.html'">Cancel</button>
+                
+                    <button type="submit" class="btn2 btn-primary">Submit</button>
+                </div>
+				
+			</form>
+
+		</div>
+
+	</div>
+	<div th:replace="~{fragments/adminHeader :: scripts}"></div>
+</body>
+</html>

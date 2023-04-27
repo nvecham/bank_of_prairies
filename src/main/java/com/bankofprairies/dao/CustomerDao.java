@@ -29,13 +29,22 @@ public class CustomerDao {
 		String status) */
 	
 		//customers.add(customer);
-		customers.add(new CustomerBean(2, "Nikhila" ,"Vecham" ,Util.parseDate("1990-02-02") ,"Female", "abc@gmail.com", "123-456-7890", "12345678", "123 Google street", "Regina","Saskatchewan", "S4W0E5", "Canada", "A"));
+		customers.add(new CustomerBean(2, "Nikhila" ,"Vecham" ,Util.parseDate("1990-02-02") ,"Female", "abc12","123456","abc@gmail.com", "123-456-7890", "12345678", "123 Google street", "Regina","Saskatchewan", "S4W0E5", "Canada", "A"));
 	}
 	
 	public List<CustomerBean> listCustomers(){
 		
 		return this.customers;
 		
+	}
+	
+	public synchronized void addCustomer(CustomerBean customer) {
+		
+		int max = this.customers.stream().mapToInt(c->c.getIdCustomer()).max().orElse(0);
+		max++;
+		customer.setIdCustomer(max);
+		customer.setStatus("A");
+		this.customers.add(customer);
 	}
 	
 	
