@@ -50,8 +50,8 @@
 						<td th:text="${customer.zip}"></td>
 						<td th:text="${customer.country}"></td>
 						<td th:text="${customer.status}"></td>
-						<td><a href="#">Update</a></td>
-						<td ><a href="#">Delete</a></td>
+						<td><a th:href="@{/update/}+${customer.idCustomer}">Update</a></td>
+						<td><a th:href="@{/delete/}+${customer.idCustomer}">Delete</a></td>
 						
 						
 					</tr>

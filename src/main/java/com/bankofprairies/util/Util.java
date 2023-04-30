@@ -17,6 +17,9 @@ public class Util {
 		return date;
 		
 	}
-	
+
+	public static int parseId(String id) {
+		return (id==null) ? 0:Integer.parseInt(id);
+	}
 
 }
