@@ -3,6 +3,9 @@ package com.bankofprairies.bean;
 import java.util.Date;
 
 public class CustomerBean {
+	
+	
+	AccountBean account;
 
 	int idCustomer;
 	String firstName;

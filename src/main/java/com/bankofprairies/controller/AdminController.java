@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bankofprairies.bean.CustomerBean;
+import com.bankofprairies.service.AccountService;
 import com.bankofprairies.service.AdminService;
 import com.bankofprairies.service.EmailService;
 import com.bankofprairies.util.Util;
@@ -28,7 +29,10 @@ public class AdminController {
 
 	@Autowired
 	AdminService adminService;
-
+	
+	@Autowired
+	AccountService accountService;
+	
 	@GetMapping("/")
 	public String index() {
 		logger.debug("Landing page");
@@ -77,7 +81,8 @@ public class AdminController {
 				email, mobile, sin, street, city, province, zip, country, status);
 
 		this.adminService.addCustomer(customer);
-
+		
+		
 		this.emailService.sendEmail( //
 				customer.getEmail(), //
 				"Welcome to Bank of Prairies", //

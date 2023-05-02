@@ -26,6 +26,7 @@ public class AdminService {
 		
 		this.validateCustomer(customer);
 		this.customerDao.addCustomer(customer);
+		
 	}
 	
 	public CustomerBean findCustomer(int idCustomer) {
