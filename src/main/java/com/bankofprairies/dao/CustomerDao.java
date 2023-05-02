@@ -112,13 +112,21 @@ public class CustomerDao {
     }
     
     
-
+    //find customer by customer id
 	public CustomerBean findCustomer(int idCustomer) {
 
 		String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ?";
 		return this.jdbcTemplate.queryForObject(sql, new CustomerMapper(), idCustomer);
 
 	}
+	
+	 //find customer by customer username
+		public CustomerBean findByUsername(String username) {
+
+			String sql = "SELECT * FROM CUSTOMER WHERE USERNAME = ?";
+			return this.jdbcTemplate.queryForObject(sql, new CustomerMapper(), username);
+
+		}
 
 	public void updateCustomer(CustomerBean customer) {
 

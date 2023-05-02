@@ -20,13 +20,16 @@
 				<ul class="nav justify-content-center">
 					<li class="nav-item" th:classappend="${option == 'home' ? 'active': ''}">
 						<a class="nav-link text-white" href="/">Home</a></li>
-					<li class="nav-item" th:classappend="${option == 'accounts' ? 'active' : ''}">
-						<a class="nav-link text-white" href="/accounts">Accounts List</a></li>
 					<li class="nav-item" th:classappend="${option == 'customers' ? 'active' : ''}">
 						<a class="nav-link text-white" href="/list_customers">Customers List</a></li>
 					<li class="nav-item" th:classappend="${option == 'addcustomer' ? 'active' : ''}">
 						<a class="nav-link text-white" href="/addcustomer">Add Customer</a>
 					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+          			<a class="nav-link text-white" href="/logout">Logout</a>
+        			</li>
 				</ul>
 			</div>
 		</nav>
