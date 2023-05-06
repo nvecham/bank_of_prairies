@@ -32,3 +32,11 @@ spring:
             enable: true
     protocol: smtp
     test-connection: false   
+    
+    
+    
+     
+    
+    
+    
+

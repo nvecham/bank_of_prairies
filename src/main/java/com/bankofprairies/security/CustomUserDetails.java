@@ -1,9 +1,15 @@
 package com.bankofprairies.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
+import org.springframework.context.support.BeanDefinitionDsl.Role;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import com.bankofprairies.bean.CustomerBean;
 public class CustomUserDetails implements UserDetails {
 
@@ -18,19 +24,25 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		  List<GrantedAuthority> authorities = new ArrayList<>(); 
+		  authorities.add(new SimpleGrantedAuthority("CUSTOMER")); 
+		  authorities.add(new SimpleGrantedAuthority("ADMIN"));
+		  return authorities;
+		 
+	    
+	    
+	  		
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return this.customer.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.customer.getUsername();
 	}
 

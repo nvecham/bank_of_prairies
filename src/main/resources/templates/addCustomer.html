@@ -34,12 +34,8 @@
 						<label for="birth">Date of birth:</label><input type="date" class="form-control" id="birth" name="birth" required>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="gender">Gender</label> <select id="gender" name="gender" class="form-control" required>
-							<option value="">--Select--</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-							<option value="other">Other</option>
-						</select>
+						<label for="gender">Gender</label><input type="text" class="form-control" id="gender" name="gender" required>
+						
 					</div>
 					<div class="form-group col-md-6">
 						<label for="username">Username</label> <input type="text" class="form-control" id="username" name="username" required>
@@ -68,22 +64,7 @@
 					</div>
 					<div class="form-group col-md-4">
 						<label for="province">Province</label> 
-						<select id="province" class="form-control" name="province">
-							<option selected>Choose...</option>
-							<option value="alberta">Alberta</option>
-							<option value="britishColumbia">British Columbia</option>
-							<option value="manitoba">Manitoba</option>
-							<option value="newBrunswick">New Brunswick</option>
-							<option value="newfoundlandandLabrador">Newfoundland and Labrador</option>
-							<option value="northwestTerritories">Northwest Territories</option>
-							<option value="novaScotia">Nova Scotia</option>
-							<option value="nunavut">Nunavut</option>
-							<option value="ontario">Ontario</option>
-							<option value="princeEdwardIsland">Prince Edward Island</option>
-							<option value="quebec">Quebec</option>
-							<option value="saskatchewan">Saskatchewan</option>
-							<option value="yukon">Yukon</option>
-						</select>
+						<input type="text" class="form-control" id="province" name="province" required>
 					</div>
 					<div class="form-group col-md-2">
 						<label for="zip">Zip</label> <input type="text" class="form-control" id="zip" name="zip" required>
@@ -93,12 +74,13 @@
 					<label for="country">Country</label> <input type="text"	class="form-control" id="country" name="country" required>
 				</div>
 				
+				<div class="form-group">
+					<label for="role">Role</label> <input type="text"	class="form-control" id="role" name="role" required>
+				</div>
+				
 				<div class="form-group col-md-2">
-						<label for="status">Active Status</label> <select id="status" name="status" class="form-control" required>
-							<option value="">--Select--</option>
-							<option value="active">Active</option>
-							<option value="inactive">Inactive</option>
-						</select>
+						<label for="status">Active Status</label> 
+						<input type="text" class="form-control" id="status" name="status" required>
 					</div>
 				
 				 <div>

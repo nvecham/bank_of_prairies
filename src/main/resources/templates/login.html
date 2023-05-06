@@ -52,6 +52,8 @@
 				<div class="col-sm-5 px-5 py-5">
 					<div class="card card-body mt-5 mx-4 text-white" style="background-color: #0868ad;">
 						<h2 class="card-title text-center">Sign In to your account</h2>
+						<div th:if="${param.error}" class="alert alert-danger" role="alert">Bad Credentials</div>        
+       					 <div th:if="${param.logout}" class="alert alert-success" role="alert">You have been signed out</div>
 					<form th:action="@{/login}" method="post">
 							<div class="form-group">
 								<label for="username">Username</label> <input type="text"

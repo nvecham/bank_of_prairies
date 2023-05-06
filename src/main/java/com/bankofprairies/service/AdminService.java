@@ -6,6 +6,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bankofprairies.bean.AccountBean;
 import com.bankofprairies.bean.CustomerBean;
 import com.bankofprairies.dao.CustomerDao;
 
@@ -48,6 +49,11 @@ public class AdminService {
 	  
 	  }
 	 
+	  
+		/*
+		 * public CustomerBean determineUserRole(String username, String password) {
+		 * this.customerDao.de }
+		 */
 
 	private void validateCustomer(CustomerBean customer) {
 		

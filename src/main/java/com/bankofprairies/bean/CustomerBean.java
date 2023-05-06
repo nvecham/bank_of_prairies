@@ -23,6 +23,7 @@ public class CustomerBean {
 	String zip;
 	String country;
 	String status;
+	String role;
 	
 	public CustomerBean() {
 		// TODO Auto-generated constructor stub
@@ -30,7 +31,7 @@ public class CustomerBean {
 
 	public CustomerBean(int idCustomer, String firstName, String lastName, Date birth, String gender, String username,
 			String password, String email, String mobile, String sin, String street, String city, String province,
-			String zip, String country, String status) {
+			String zip, String country, String status,String role) {
 		super();
 		this.idCustomer = idCustomer;
 		this.firstName = firstName;
@@ -48,6 +49,7 @@ public class CustomerBean {
 		this.zip = zip;
 		this.country = country;
 		this.status = status;
+		this.role = role;
 	}
 
 	public int getIdCustomer() {
@@ -178,13 +180,27 @@ public class CustomerBean {
 		this.status = status;
 	}
 
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
-		return "CustomerBean [idCustomer=" + idCustomer + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", birth=" + birth + ", gender=" + gender + ", username=" + username + ", password=" + password
-				+ ", email=" + email + ", mobile=" + mobile + ", sin=" + sin + ", street=" + street + ", city=" + city
-				+ ", province=" + province + ", zip=" + zip + ", country=" + country + ", status=" + status + "]";
+		return "CustomerBean [account=" + account + ", idCustomer=" + idCustomer + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", birth=" + birth + ", gender=" + gender + ", username=" + username
+				+ ", password=" + password + ", email=" + email + ", mobile=" + mobile + ", sin=" + sin + ", street="
+				+ street + ", city=" + city + ", province=" + province + ", zip=" + zip + ", country=" + country
+				+ ", status=" + status + ", role=" + role + "]";
 	}
+
+
+
+	
 	
 	
 	

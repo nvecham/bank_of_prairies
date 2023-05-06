@@ -5,6 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Util {
+
+	public static int parseId(String id) {
+		
+		return (id==null) ? 0:Integer.parseInt(id);
+	}
 	
 	public static Date parseDate(String str) {
 		Date date = null;
@@ -14,12 +19,7 @@ public class Util {
 		} catch (ParseException e) {
 			throw new RuntimeException("Error while parsing date: " + str);
 		}
-		return date;
 		
+		return date;
 	}
-
-	public static int parseId(String id) {
-		return (id==null) ? 0:Integer.parseInt(id);
-	}
-
 }
