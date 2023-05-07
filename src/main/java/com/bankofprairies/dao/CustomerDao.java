@@ -76,7 +76,7 @@ public class CustomerDao {
 			ps.setString(13, customer.getZip());
 			ps.setString(14, customer.getCountry());
 			ps.setString(15, customer.getStatus());
-			ps.setNString(16, customer.getRole());
+			ps.setString(16, customer.getRole());
 
 			return ps;
 		}, customerKeyHolder);
@@ -179,6 +179,8 @@ public class CustomerDao {
 		return this.jdbcTemplate.queryForObject(sql, new CustomerMapper(), username);
 
 	}
+	
+
 
 	/*
 	 * // To retrieve role of a customer private String determineUserRole(String
@@ -197,7 +199,7 @@ public class CustomerDao {
 
 	public void updateCustomer(CustomerBean customer) {
 		String sql = "UPDATE CUSTOMER SET FIRST_NAME = ?, LAST_NAME = ?, DOB = ?, GENDER = ?, USERNAME = ?, EMAIL = ?, MOBILE = ?, SIN = ?, STREET = ?,"
-				+ "CITY = ?, PROVINCE = ?, ZIP = ?, COUNTRY = ?, ACTIVE_STATUS = ? , ROLE = ? , WHERE CUSTOMER_ID = ?";
+				+ "CITY = ?, PROVINCE = ?, ZIP = ?, COUNTRY = ?, ACTIVE_STATUS = ? , ROLE = ?  WHERE CUSTOMER_ID = ?";
 
 		int status = this.jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getBirth(),
 				customer.getGender(), customer.getUsername(), customer.getEmail(), customer.getMobile(),

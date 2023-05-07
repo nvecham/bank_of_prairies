@@ -1,14 +1,14 @@
 package com.bankofprairies.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -68,6 +68,11 @@ public class AdminController {
 	 * else { return "redirect:/login?error"; } }
 	 */
 	
+	 @ModelAttribute("username")
+	    public String getUsername(Principal principal) {
+		 logger.debug(principal.getName());
+	    	return principal.getName();
+	    }
 	
 	@GetMapping("/adminDashboard")
 	public String adminDashboard() {
@@ -81,7 +86,7 @@ public class AdminController {
 	
 
 	@GetMapping("/list_customers")
-	public ModelAndView listCustomers() {
+	public ModelAndView listCustomers(Principal principal) {
 		logger.debug("Listing customers");
 
 		List<CustomerBean> customers = this.adminService.listCustomers();
@@ -179,12 +184,13 @@ public class AdminController {
 		return "redirect:/list_customers";
 	}
 
-	private CustomerBean createCustomerBean(String id, String firstName, String lastName, String birth, String gender,
+	private CustomerBean createCustomerBean(String idCustomer, String firstName, String lastName, String birth, String gender,
 			String username, String password, String email, String mobile, String sin, String street, String city,
 			String province, String zip, String country, String status, String role) {
 
-		CustomerBean customer = new CustomerBean(Util.parseId(id), firstName, lastName, Util.parseDate(birth), gender,
-				username, password, email, mobile, sin, street, city, province, zip, country, status, role);
+		
+		CustomerBean customer = new CustomerBean(Util.parseId(idCustomer), firstName,  lastName, Util.parseDate(birth), gender, username,
+				 password,  email,  mobile,  sin,  street,  city,  province, zip, country, status,role,  null);
 
 		return customer;
 

@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" media="all" th:href="@{css/style.css}"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<title>Customer Dashboard</title>
 </head>
+
 <body>
-	<p>Debit card number: ${debitCardNumber}</p>
-	<!-- <p>Debit card validity: ${debitCardValidity}</p> -->
-	<p>CVV: ${cvv}</p>
+	<div class="container-fluid mt-2">
+		<div th:replace="~{fragments/customerHeader :: custHeader(customerhome)}"></div>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top:0px;margin-top: 150px">
+                <div class="justify-content-between">
+                <h1 class="h2 mt-5" style="display: flex; justify-content: center; align-items: center;">Card Details</h1></div>
+                <div class="container c1" style="padding-top:0px;margin-top: 150px">
+                   
+                    <div class="card card1">
+                        <div class="card-inner card-inner1">
+                            <div class="front">
+                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                <div class="row row1">
+                                    <img src="https://i.ibb.co/G9pDnYJ/chip.png" width="60px">
+                                    <P>BANK OF PRAIRIES</P>
+                                </div>
+                                <!-- <div class="row row1 card-no" th:each="digitGroup : ${cardNumberList}">
+                                    <p th:text="${digitGroup}"></p>
+                                </div> -->
+                                
+                                <div class="row row1 card-no">
+                                	<!-- <p th:text="${debitCardNumber}"></p> -->
+                                	  <p th:text="${#strings.replace(#strings.substring(debitCardNumber, 0, 4), '(?<=\\d)(?=(\\d{4})+$)', ' ')} + ' ' + 
+        							   ${#strings.replace(#strings.substring(debitCardNumber, 4, 8), '(?<=\\d)(?=(\\d{4})+$)', ' ')} + ' ' + 
+     								      ${#strings.replace(#strings.substring(debitCardNumber, 8, 12), '(?<=\\d)(?=(\\d{4})+$)', ' ')} + ' ' + 
+        								${#strings.replace(#strings.substring(debitCardNumber, 12, 16), '(?<=\\d)(?=(\\d{4})+$)', ' ')}">
+ 									 </p>
+                                </div>
+                                <div class="row row1 card-holder">
+                                    <p>CARD HOLDER</p>
+                                    <p>VALID TILL</p>
+                                </div>
+                                <div class="row row1 name">
+                                    <p th:text="${cardHolderName}"></p>
+                                    <p th:text="${debitCardValidity}"></p>
+                                </div>
+                            </div>
+                            <div class="back">
+                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                <div class="bar"></div>
+                                <div class="row row1 card-cvv">
+                                    <div>
+                                        <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                                    </div>
+                                    <p th:text="${cvv}"></p>
+                                </div>
+                                
+                                <div class="row row1 signature">
+                                    <p>BANK OF PRAIRIES</p>
+                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+             
+        </main>        
+		
+
+	</div>
+	<div th:replace="~{fragments/customerHeader :: scripts}"></div>
 </body>
 </html>

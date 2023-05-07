@@ -48,6 +48,10 @@ public class AdminService {
 		  this.customerDao.deleteCustomer(idCustomer); 
 	  
 	  }
+	  
+	  public CustomerBean findByUsername(String usename) {
+		  return this.customerDao.findByUsername(usename);
+	  }
 	 
 	  
 		/*

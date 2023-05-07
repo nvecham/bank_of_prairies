@@ -4,9 +4,6 @@ import java.util.Date;
 
 public class CustomerBean {
 	
-	
-	AccountBean account;
-
 	int idCustomer;
 	String firstName;
 	String lastName;
@@ -25,13 +22,15 @@ public class CustomerBean {
 	String status;
 	String role;
 	
+	AccountBean account;
+	
 	public CustomerBean() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public CustomerBean(int idCustomer, String firstName, String lastName, Date birth, String gender, String username,
 			String password, String email, String mobile, String sin, String street, String city, String province,
-			String zip, String country, String status,String role) {
+			String zip, String country, String status,String role, AccountBean account) {
 		super();
 		this.idCustomer = idCustomer;
 		this.firstName = firstName;
@@ -50,6 +49,7 @@ public class CustomerBean {
 		this.country = country;
 		this.status = status;
 		this.role = role;
+		this.account = account;
 	}
 
 	public int getIdCustomer() {
@@ -189,6 +189,14 @@ public class CustomerBean {
 		this.role = role;
 	}
 
+	public AccountBean getAccount() {
+		return account;
+	}
+
+	public void setAccount(AccountBean account) {
+		this.account = account;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerBean [account=" + account + ", idCustomer=" + idCustomer + ", firstName=" + firstName
@@ -197,6 +205,9 @@ public class CustomerBean {
 				+ street + ", city=" + city + ", province=" + province + ", zip=" + zip + ", country=" + country
 				+ ", status=" + status + ", role=" + role + "]";
 	}
+
+	
+	
 
 
 

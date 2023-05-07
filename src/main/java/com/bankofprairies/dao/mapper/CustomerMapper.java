@@ -29,8 +29,8 @@ public class CustomerMapper implements RowMapper<CustomerBean> {
 		customer.setProvince(rs.getString("PROVINCE"));
 		customer.setZip(rs.getString("ZIP"));
 		customer.setCountry(rs.getString("COUNTRY"));
-		customer.setStatus(rs.getNString("ACTIVE_STATUS"));
-		
+		customer.setStatus(rs.getString("ROLE"));
+		customer.setStatus(rs.getString("ACTIVE_STATUS"));
 		
 		return customer;
 	}
