@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" media="all" th:href="@{css/style.css}"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<title>Customer Dashboard</title>
+<style>
+.btn3{
+    border: 0;
+    line-height: 2.5;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    color: white;
+    width: 60%;
+    
+    border-radius: 5px;
+    background-color: #8fca6e !important;
+}
+
+</style>
+</head>
+
+<body>
+	<div class="container-fluid mt-2">
+		<div th:replace="~{fragments/customerHeader :: custHeader(customerhome)}"></div>
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top:0px;margin-top: 150px">
+        		<div class="jumbotron bg-white" style="height:80vh;margin-right:20px;padding-top: 50px;padding-left: 300px;">
+        			<div class="col">
+        			<div>
+        				<a href="/depositMoney" ><button type="button" class="btn3 btn-info">Deposit Money</button></a>
+        			</div>
+        			<br>
+        			<div >
+        				<a href="/withdrawMoney" ><button type="button" class="btn3 btn-info">Withdraw Money</button></a> 
+        			</div>
+        			<br>
+					<div>
+						<a href="#" ><button type="button" class="btn3 btn-info">Transfer Money</button></a>
+					</div>  
+				    </div>
+        		</div>        
+                 
+
+
+             
+        </main>        
+		
+
+	</div>
+	<div th:replace="~{fragments/customerHeader :: scripts}"></div>
+</body>
+</html>

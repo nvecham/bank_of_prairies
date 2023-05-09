@@ -9,13 +9,29 @@
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
 <title>Update Customer Details</title>
+<style>
+	.btn2{
+    border: 0;
+    line-height: 2.5;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    color: white;
+    width: 25%;
+    
+    border-radius: 5px;
+    background-color: #8fca6e !important;
+}
+
+
+</style>
 </head>
 
 <body>
 	<div class="container-fluid mt-2">
 		<div th:replace="~{fragments/adminHeader :: header(list)}"></div>
 
-		<div class="container text-align:center w-75 border bg-white rounded shadow mt-3 mb-3 px-5">
+		<div class="container text-align:center w-75 border bg-white rounded shadow mb-3 px-5" style="padding-top:0px;margin-top: 150px">
 
 			
 				<h1 class="text-center my-3 h2">Update Customer Details</h1>
@@ -85,11 +101,11 @@
 							
 					</div>
 				
-				 <div>
+				 <div class="mt-2 mb-2" style="padding-left: 300px;padding-right: 0px;">
                     
-                    <button type="submit" class="btn2 btn-primary" onclick="window.location.href='index.html'">Cancel</button>
-                
-                    <button type="submit" class="btn2 btn-primary">Submit</button>
+                   <!--<button type="submit" class="btn2" onclick="window.location.href='index.html'" style="margin-right: 20px">Cancel</button>-->
+                	<!-- <button type="reset" class="btn2" value="submit" style="margin-right: 20px">Reset</button>-->
+                    <button type="submit" class="btn2" style="width:40%;margin-left:70px">Submit</button>
                 </div>
 				
 			</form>

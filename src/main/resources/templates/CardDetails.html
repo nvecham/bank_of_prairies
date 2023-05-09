@@ -45,7 +45,8 @@
                                 </div>
                                 <div class="row row1 name">
                                     <p th:text="${cardHolderName}"></p>
-                                    <p th:text="${debitCardValidity}"></p>
+                                   <!--  <p th:text="${debitCardValidity}"></p>-->
+                                   <p th:text="${#dates.format(debitCardValidity, 'MM/yy')}"></p>
                                 </div>
                             </div>
                             <div class="back">
