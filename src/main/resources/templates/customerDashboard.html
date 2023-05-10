@@ -15,6 +15,48 @@
 	<div class="container-fluid mt-2">
 		<div th:replace="~{fragments/customerHeader :: custHeader(customerhome)}"></div>
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top:0px;margin-top: 150px">
+		<div class="container bg-light" style="margin-top:150px;">
+     			<h1 class="text-center">Welcome,<span th:text="${fullName}"></span></h1>
+    			<hr class="w-95">
+     			 <p class="lead text-center text-muted">Please find your account summary below</p>
+     			 <br>
+     			
+                    <div class="card-deck">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body" style="background-color:green;background: linear-gradient(to bottom, #ff9933, #ff6633);">
+                                <h2 class="card-text text-center" ><!--th:text="${Account Balance}-->Account Balance</h2>
+                               <p class ="text-center" th:text=${accountBalance}></p>
+                            </div>
+                          
+                        </div>
+                    
+                  
+                        <div class="card bg-warning text-white">
+                            <div class="card-body" style="background:linear-gradient(to bottom, #386b8f, #3ad9d9);">
+                                <h4 class="card-text text-center"><!-- th:text="${Amount debited this month}-->Amount debited this month</h4>
+                                <p class ="text-center" th:text=${totalDebitAmount}></p>
+                            </div>
+                           
+                        </div>
+                   
+                   
+                   
+                        <div class="card bg-danger text-white">
+                            <div class="card-body" style="background:linear-gradient(to bottom, #c46097, #d93a75);">
+                                <h4 class="card-text text-center"><!-- th:text="${Amount credited this month}-->Amount credited this month</h4>
+                                <p class="text-center" th:text=${totalCrAmount}></p>
+                                
+                            </div>
+                           
+                        </div>
+                   
+                </div>
+     			 
+     			 
+     			 </div>
+     			 
+     			 
+  			 
 			
 		</main>
 		

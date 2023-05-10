@@ -10,7 +10,6 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -20,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bankofprairies.bean.AccountBean;
 import com.bankofprairies.bean.CustomerBean;
 import com.bankofprairies.dao.mapper.CustomerMapper;
-import com.bankofprairies.util.Util;
 
 @Repository
 public class CustomerDao {

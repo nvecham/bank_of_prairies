@@ -17,7 +17,7 @@
     font-size: 1rem;
     text-align: center;
     color: white;
-    width: 60%;
+    width: 30%;
     
     border-radius: 5px;
     background-color: #8fca6e !important;
@@ -30,9 +30,11 @@
 	<div class="container-fluid mt-2">
 		<div th:replace="~{fragments/customerHeader :: custHeader(customerhome)}"></div>
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top:0px;margin-top: 150px">
-        		<div class="jumbotron bg-white" style="height:80vh;margin-right:20px;padding-top: 50px;padding-left: 300px;">
-        			<div class="col">
-        			<div>
+        	<!-- 	<div class="container bg-white" style="height:80vh;margin-right:20px;padding-top: 50px;padding-left: 300px;">-->
+        			<div class="container bg-white mt-3 pt-3" style="height:80vh;width:75%">
+        			
+        			
+        			<div class="mt-5">
         				<a href="/depositMoney" ><button type="button" class="btn3 btn-info">Deposit Money</button></a>
         			</div>
         			<br>
@@ -43,8 +45,46 @@
 					<div>
 						<a href="#" ><button type="button" class="btn3 btn-info">Transfer Money</button></a>
 					</div>  
-				    </div>
-        		</div>        
+				
+				  		<h4  style="margin-top:60px">Recent Transactions</h4>
+				   
+				    	<table class="table table-bordered table-striped table-sm mt-3">
+  						<thead style="background-color:#0868ad;color:white">
+    						<tr>
+     							<th scope="col">Date</th>
+      							<th scope="col">Transaction Details</th>
+      							<th scope="col">Amount</th>
+      							<th scope="col">Credit/Debit</th>
+   							</tr>
+  						</thead>
+  						<tbody>
+    					<tr th:each="transaction : ${transactions}">	
+								<td th:text="${#dates.format(transaction.transacDate, 'dd-MM-yyyy')}"></td>								
+								<td th:text="${transaction.transacDesc}"></td>
+								<td th:text="${transaction.transcAmount}"></td>
+								<td th:text="${transaction.transacType}"></td>
+    						</tr> 
+    						
+						<!-- 	<th:block th:with="latestTransactions=${transactions.subList(Math.max(transactions.size() - 5, 0), transactions.size())}">
+  								<tr th:each="transaction : ${latestTransactions}">
+ 								 <tr th:each="transaction : ${latestTransactions}">
+   								 <td th:text="${#dates.format(transaction.transacDate, 'dd-MM-yyyy')}"></td>
+   								 <td th:text="${transaction.transacDesc}"></td>
+    							 <td th:text="${transaction.transcAmount}"></td>
+   								 <td th:text="${transaction.transacType}"></td>
+  							</tr>
+							</th:block>  -->
+    						
+   						</tbody>
+					</table>
+				    
+				   </div> 
+				    
+        		 
+        			
+
+        		
+        			     
                  
 
 

@@ -2,7 +2,6 @@ package com.bankofprairies.dao.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 import org.springframework.jdbc.core.RowMapper;
 

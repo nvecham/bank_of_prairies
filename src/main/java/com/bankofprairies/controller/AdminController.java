@@ -79,10 +79,10 @@ public class AdminController {
 	    return "adminDashboard";
 	}
 
-	@GetMapping("/customerDashboard")
-	public String customerDashboard() {
-	    return "customerDashboard";
-	}
+	/*
+	 * @GetMapping("/customerDashboard") public String customerDashboard() { return
+	 * "customerDashboard"; }
+	 */
 	
 
 	@GetMapping("/list_customers")

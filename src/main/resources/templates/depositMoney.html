@@ -33,14 +33,14 @@
 			<div class="container bg-white px-auto" style="height:80vh">
 				<h1 class="text-center h3">Deposit Money</h1>
 				<form action="/deposit" method="post">
-				<div class="form-group col-md-9">
-					<label for="id">Account Number :</label> <input type="text" class="form-control" id="accNum" name="accNum" th:value = "${customer?.idCustomer}">
+					<div class="form-group col-md-9">
+					<label for="accNum">Account Number :</label> <input type="text" class="form-control" id="accNum" name="accNum" th:value="${accountNumber}" readonly>
 				</div>
 				<div class="form-group col-md-9">
-					<label for="firstName">Amount</label> <input type="text" class="form-control" id="amount" name="amount" th:value = "${customer?.firstName}">
+					<label for="amount">Amount</label> <input type="text" class="form-control" id="amount" name="amount">
 				</div>
 				<div class="form-group col-md-9">
-					<label for="lastName">CVV</label> <input type="text" class="form-control" id="cvv" name="cvv" th:value = "${customer?.lastName}">
+					<label for="desc">Description</label> <input type="text" class="form-control" id="desc" name="desc">
 				</div>
 				<div class="form-group col-md-9">
 					<button type="submit" class="btn4 mt-2" style="min-width: 100px">Submit</button>

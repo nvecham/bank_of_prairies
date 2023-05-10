@@ -58,12 +58,6 @@ public class CustomerController {
 	    	return principal.getName();
 	    }
 	 
-	 	@GetMapping("/accountDetails")
-	 	public String getAccountDetails(Model model, Authentication authentication) {
-	 		
-	 		
-	 		return "accountDetails";
-	 	}
 	 
 	 
 		/*

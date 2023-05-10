@@ -1,12 +1,13 @@
 package com.bankofprairies.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bankofprairies.bean.AccountBean;
-import com.bankofprairies.bean.CustomerBean;
+import com.bankofprairies.bean.TransactionBean;
 import com.bankofprairies.dao.AccountDao;
 
 @Service
@@ -20,8 +21,8 @@ public class AccountService {
 		return this.accountDao.getAccountById(idCustomer);
 	}
 	
-	public void depositMOney(int idAccount, BigDecimal amount) {
-		this.accountDao.depositMoney(idAccount, amount);
+	public void depositMOney(int idAccount, BigDecimal amount, String transcDescription) {
+		this.accountDao.depositMoney(idAccount, amount, transcDescription);
 	}
 
 	public AccountBean getAccountByUsername(String username) {
@@ -29,8 +30,29 @@ public class AccountService {
 		
 	}
 
-	public void withdrawMoney(int accountId, BigDecimal withdrawtAmount) {
-		this.accountDao.withdraw(accountId, withdrawtAmount);
+	public void withdrawMoney(int accountId, BigDecimal withdrawtAmount,String transcDescription) {
+		this.accountDao.withdraw(accountId, withdrawtAmount,transcDescription);
 	}
+
+
+	public List<TransactionBean> recentTransactions(int idAccount) {
+		List<TransactionBean> transactions = this.accountDao.recentTransactions(idAccount);
+		return transactions;
+	
+	}
+	
+	public List<TransactionBean> totalTransactions(int idAccount) {
+		List<TransactionBean> transactions = this.accountDao.totalTransactions(idAccount);
+		return transactions;
+	
+	}
+	
+	
+	
+	/*
+	 * public TransactionBean getCurrentMonthDbAmount(int idAccount) { return
+	 * this.accountDao.getCurrentMonthDbAmount(idAccount); }
+	 * 
+	 */
 
 }

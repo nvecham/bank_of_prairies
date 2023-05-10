@@ -9,8 +9,14 @@
 </head>
 
 <body>
-	<div class="container-fluid mt-2">
+	<div class="container-fluid mt-5 w-75">
 		<div th:replace="~{fragments/adminHeader :: header(home)}"></div>
+			<div class="jumbotron bg-light border border-dark" style="height:70vh;margin-top:180px;">
+     			<h1 class="text-center" style="margin-top: 40px">Welcome to Admin Portal</h1>
+    			<hr class="w-75">
+     			 <p class="lead text-center text-muted">Admin can add, update and delete customers.</p>
+  			 </div>
+		
 
 	</div>
 	<div th:replace="~{fragments/adminHeader :: scripts}"></div>
