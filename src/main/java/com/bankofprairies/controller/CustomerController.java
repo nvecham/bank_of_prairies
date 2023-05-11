@@ -21,18 +21,15 @@ import com.bankofprairies.service.AdminService;
 
 @Controller
 public class CustomerController {
-	
+
 	@Autowired
 	AccountService accountService;
-	
+
 	@Autowired
 	AdminService adminService;
-	
-	
-	
+
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	
+
 	/*
 	 * @GetMapping("/cardDetails/{idCustomer}") public ModelAndView
 	 * showCardDetails(@PathVariable("idCustomer") int idCustomer,Model model){
@@ -52,53 +49,50 @@ public class CustomerController {
 	 * 
 	 * }
 	 */
-	 @ModelAttribute("username")
-	    public String getUsername(Principal principal) {
-		 logger.debug(principal.getName());
-	    	return principal.getName();
-	    }
-	 
-	 
-	 
-		/*
-		 * @GetMapping("/") public String home(Model model, Principal principal) {
-		 * String username = principal.getName(); CustomerBean customer =
-		 * adminService.findByUsername(username); String fullName =
-		 * customer.getFirstName() + ' ' +customer.getLastName();
-		 * model.addAttribute("fullName", fullName); return "customerHeader"; }
-		 */
-		
-		
-		  @GetMapping("/cardDetails") 
-		  public String getCardDetails(Model model, Authentication authentication) { 
-			  
-			  String username = authentication.getName();
-			  CustomerBean customer = adminService.findByUsername(username); 
-			  int idCustomer = customer.getIdCustomer(); 
-			  AccountBean account = accountService.getAccountById(idCustomer);
-		  
-		  	  long debitCardNumber = account.getDebitCardNumber(); 
-			 
-				/*
-				 * String cardNumberString = Long.toString(debitCardNumber); List<String>
-				 * cardNumberList = new ArrayList<>(); for (int i = 0; i <
-				 * cardNumberString.length(); i += 4) {
-				 * cardNumberList.add(cardNumberString.substring(i, Math.min(i + 4,
-				 * cardNumberString.length()))); }
-				 */
-			  
-			  Date debitCardValidity = account.getDebitCardValidTill(); 
-			  int cvv = account.getDebitCvv(); 
-			  String cardHolderName = customer.getFirstName()+ ' ' + customer.getLastName();
-			  model.addAttribute("debitCardNumber",debitCardNumber); 
-			  model.addAttribute("debitCardValidity", debitCardValidity); 
-			  model.addAttribute("cvv", cvv);
-			  model.addAttribute("cardHolderName", cardHolderName);
-		  
-		  return "cardDetails";
-		  
-		  }
-		 
+	@ModelAttribute("username")
+	public String getUsername(Principal principal) {
+		logger.debug(principal.getName());
+		return principal.getName();
 	}
 
+	/*
+	 * @GetMapping("/") public String home(Model model, Principal principal) {
+	 * String username = principal.getName(); CustomerBean customer =
+	 * adminService.findByUsername(username); String fullName =
+	 * customer.getFirstName() + ' ' +customer.getLastName();
+	 * model.addAttribute("fullName", fullName); return "customerHeader"; }
+	 */
 
+	/*
+	 * @GetMapping("/cardDetails") public String getCardDetails(Model model,
+	 * Authentication authentication) {
+	 * 
+	 * String username = authentication.getName(); CustomerBean customer =
+	 * adminService.findByUsername(username); int idCustomer =
+	 * customer.getIdCustomer(); AccountBean account =
+	 * accountService.getAccountById(idCustomer);
+	 * 
+	 * long debitCardNumber = account.getDebitCardNumber();
+	 * 
+	 * 
+	 * String cardNumberString = Long.toString(debitCardNumber); List<String>
+	 * cardNumberList = new ArrayList<>(); for (int i = 0; i <
+	 * cardNumberString.length(); i += 4) {
+	 * cardNumberList.add(cardNumberString.substring(i, Math.min(i + 4,
+	 * cardNumberString.length()))); }
+	 * 
+	 * 
+	 * Date debitCardValidity = account.getDebitCardValidTill(); int cvv =
+	 * account.getDebitCvv(); String cardHolderName = customer.getFirstName()+ ' ' +
+	 * customer.getLastName();
+	 * model.addAttribute("debitCardNumber",debitCardNumber);
+	 * model.addAttribute("debitCardValidity", debitCardValidity);
+	 * model.addAttribute("cvv", cvv); model.addAttribute("cardHolderName",
+	 * cardHolderName);
+	 * 
+	 * return "cardDetails";
+	 * 
+	 * }
+	 */
+
+}

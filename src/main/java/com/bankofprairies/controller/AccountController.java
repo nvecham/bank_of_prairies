@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,7 +51,12 @@ public class AccountController {
 	@ModelAttribute("username")
 	public String getUsername(Principal principal) {
 		logger.debug(principal.getName());
-		return principal.getName();
+		String username = principal.getName();
+		CustomerBean customer = adminService.findByUsername(username);
+		String fullName = customer.getFirstName()+ ' '+customer.getLastName();
+
+		
+		return fullName;
 	}
 
 	@GetMapping("/customerDashboard")
@@ -244,5 +249,35 @@ public class AccountController {
 		return "redirect:/allTransactions";
 
 	}
+	
+	 @GetMapping("/cardDetails") 
+	  public String getCardDetails(Model model, Authentication authentication) { 
+		  
+		  String username = authentication.getName();
+		  CustomerBean customer = adminService.findByUsername(username); 
+		  int idCustomer = customer.getIdCustomer(); 
+		  AccountBean account = accountService.getAccountById(idCustomer);
+	  
+	  	  long debitCardNumber = account.getDebitCardNumber(); 
+		 
+			/*
+			 * String cardNumberString = Long.toString(debitCardNumber); List<String>
+			 * cardNumberList = new ArrayList<>(); for (int i = 0; i <
+			 * cardNumberString.length(); i += 4) {
+			 * cardNumberList.add(cardNumberString.substring(i, Math.min(i + 4,
+			 * cardNumberString.length()))); }
+			 */
+		  
+		  Date debitCardValidity = account.getDebitCardValidTill(); 
+		  int cvv = account.getDebitCvv(); 
+		  String cardHolderName = customer.getFirstName()+ ' ' + customer.getLastName();
+		  model.addAttribute("debitCardNumber",debitCardNumber); 
+		  model.addAttribute("debitCardValidity", debitCardValidity); 
+		  model.addAttribute("cvv", cvv);
+		  model.addAttribute("cardHolderName", cardHolderName);
+	  
+	  return "cardDetails";
+	  
+	  }
 
 }
