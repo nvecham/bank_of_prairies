@@ -24,9 +24,18 @@ public class AccountService {
 	public void depositMOney(int idAccount, BigDecimal amount, String transcDescription) {
 		this.accountDao.depositMoney(idAccount, amount, transcDescription);
 	}
+	
+	public void transferMoney(long fromAccountNumber,long toAccountNumber, BigDecimal amount, String transcDescription) {
+		this.accountDao.transferMoney(fromAccountNumber,toAccountNumber , amount, transcDescription);
+	}
 
 	public AccountBean getAccountByUsername(String username) {
 		return this.accountDao.getAccountByUsername(username);
+		
+	}
+	
+	public AccountBean getAccountByAccountNumber(long accountNumber) {
+		return this.accountDao.getAccountByAccountNumber(accountNumber);
 		
 	}
 

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.bankofprairies.bean.AccountBean;
 import com.bankofprairies.bean.CustomerBean;
 
 public class CustomerMapper implements RowMapper<CustomerBean> {
@@ -29,8 +30,14 @@ public class CustomerMapper implements RowMapper<CustomerBean> {
 		customer.setProvince(rs.getString("PROVINCE"));
 		customer.setZip(rs.getString("ZIP"));
 		customer.setCountry(rs.getString("COUNTRY"));
-		customer.setStatus(rs.getString("ROLE"));
+		customer.setRole(rs.getString("ROLE"));
 		customer.setStatus(rs.getString("ACTIVE_STATUS"));
+		
+		AccountBean account = new AccountBean();
+		account.setAccountNumber(rs.getLong("ACC_NUMBER"));
+		
+		customer.setAccount(account);
+		
 		
 		return customer;
 	}

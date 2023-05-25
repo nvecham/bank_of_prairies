@@ -1,12 +1,10 @@
 package com.bankofprairies.service;
 
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bankofprairies.bean.AccountBean;
 import com.bankofprairies.bean.CustomerBean;
 import com.bankofprairies.dao.CustomerDao;
 
@@ -67,6 +65,10 @@ public class AdminService {
 			
 			throw new RuntimeException("Invalid Customer data");
 		}
+	}
+
+	public void updatePassword(String newPassword, int idCustomer) {
+		this.customerDao.updatePassword(newPassword,idCustomer);
 	}
 	
 	

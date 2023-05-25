@@ -35,6 +35,13 @@ CUSTOMER_CUSTOMER_ID */
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public AccountBean(long accountNumber) {
+		super();
+		this.accountNumber = accountNumber;
+	}
+
+
 	public AccountBean(int idAccount, long accountNumber, BigDecimal accountBalance, long debitCardNumber,
 			Date debitCardValidTill, int debitCvv, String createdBy, Date createdDate, String updatedBy,
 			Date updatedDate) {

@@ -17,6 +17,8 @@ public class TransactionBean {
 	BigDecimal totalDebit;
 	BigDecimal totalCredit;
 	
+	AccountBean account;
+	
 	public TransactionBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,7 +27,7 @@ public class TransactionBean {
 	
 	
 	public TransactionBean(int idTransaction, BigDecimal transcAmount, String transacDesc, String transacType,
-			Date transacDate, BigDecimal totalDebit, BigDecimal totalCredit) {
+			Date transacDate, BigDecimal totalDebit, BigDecimal totalCredit, AccountBean account) {
 		super();
 		this.idTransaction = idTransaction;
 		this.transcAmount = transcAmount;
@@ -86,12 +88,30 @@ public class TransactionBean {
 		this.totalCredit = totalCredit;
 	}
 
+		
+	public AccountBean getAccount() {
+		return account;
+	}
+
+
+	public void setAccount(AccountBean account) {
+		this.account = account;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "TransactionBean [idTransaction=" + idTransaction + ", transcAmount=" + transcAmount + ", transacDesc="
 				+ transacDesc + ", transacType=" + transacType + ", transacDate=" + transacDate + ", totalDebit="
-				+ totalDebit + ", totalCredit=" + totalCredit + "]";
+				+ totalDebit + ", totalCredit=" + totalCredit + ", account=" + account + "]";
 	}
+
+
+
+
+	
 	
 
 	

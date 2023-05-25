@@ -19,7 +19,8 @@ public class EmailService {
 		mailMessage.setTo(toEmail);
 		mailMessage.setSubject(subject);
 		mailMessage.setText(message);
-		mailMessage.setFrom("boptest111@gmail.com");
+		//mailMessage.setFrom("boptest111@gmail.com");
+		mailMessage.setFrom("Bank Of Prairies <boptest111@gmail.com>");
 		javaMailSender.send(mailMessage);
 	
 	}

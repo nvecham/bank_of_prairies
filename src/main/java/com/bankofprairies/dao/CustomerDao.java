@@ -2,6 +2,7 @@ package com.bankofprairies.dao;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,10 @@ public class CustomerDao {
 
 	public List<CustomerBean> listCustomers() {
 
-		String sql = "SELECT * FROM CUSTOMER";
+		//String sql = "SELECT * FROM CUSTOMER";
+		String sql = "SELECT C.* , A.ACC_NUMBER FROM CUSTOMER C LEFT JOIN ACCOUNT A ON C.CUSTOMER_ID= A.CUSTOMER_CUSTOMER_ID";
+		
+		
 
 		return jdbcTemplate.query(sql, new CustomerMapper());
 
@@ -83,10 +87,42 @@ public class CustomerDao {
 		int customerId = customerKeyHolder.getKey().intValue();
 
 		// Insert the account with the generated customer id
+		/*
+		 * String accountSql =
+		 * "INSERT INTO ACCOUNT (ACC_NUMBER, ACC_BALANCE, DB_CARD_NUMBER, DBCARD_VALID_TILL, DB_CVV, CREATED_BY, CREATED_DATE, CUSTOMER_CUSTOMER_ID) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)"
+		 * ;
+		 * 
+		 * this.jdbcTemplate.update(accountSql, accountNumber, initialAccountBalance,
+		 * debitCardNumber, debitCardValidTill, debitCvv, "Admin", customerId);
+		 */
+		
+		
+		
 		String accountSql = "INSERT INTO ACCOUNT (ACC_NUMBER, ACC_BALANCE, DB_CARD_NUMBER, DBCARD_VALID_TILL, DB_CVV, CREATED_BY, CREATED_DATE, CUSTOMER_CUSTOMER_ID) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)";
+		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+		this.jdbcTemplate.update(connection -> {
+		    PreparedStatement statement = connection.prepareStatement(accountSql, Statement.RETURN_GENERATED_KEYS);
+		    statement.setLong(1, accountNumber);
+		    statement.setBigDecimal(2, initialAccountBalance);
+		    statement.setLong(3, debitCardNumber);
+		    statement.setDate(4, new java.sql.Date(debitCardValidTill.getTime()));
+		    statement.setInt(5, debitCvv);
+		    statement.setString(6, "Admin");
+		    statement.setInt(7, customerId);
+		    return statement;
+		}, keyHolder);
 
-		this.jdbcTemplate.update(accountSql, accountNumber, initialAccountBalance, debitCardNumber, debitCardValidTill,
-				debitCvv, "Admin", customerId);
+		int accountId = keyHolder.getKey().intValue();
+		
+		String transactionSql = "INSERT INTO TRANSACTION(TR_AMOUNT, TR_TYPE,TR_DESCRIPTION, TR_DATE, ACCOUNT_ID) VALUES (100,'Credit','Initial Deposit',NOW(),?)";
+		this.jdbcTemplate.update(transactionSql,accountId);
+		
+		
+		
+		
+		
+		
+
 	}
 
 	/*
@@ -165,7 +201,8 @@ public class CustomerDao {
 	// find customer by customer id
 	public CustomerBean findCustomer(int idCustomer) {
 
-		String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ?";
+		//String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ?";
+		String sql = "SELECT C.* , A.ACC_NUMBER FROM CUSTOMER C LEFT JOIN ACCOUNT A ON C.CUSTOMER_ID= A.CUSTOMER_CUSTOMER_ID WHERE CUSTOMER_ID = ?";
 		return this.jdbcTemplate.queryForObject(sql, new CustomerMapper(), idCustomer);
 
 	}
@@ -173,7 +210,8 @@ public class CustomerDao {
 	// find customer by customer username
 	public CustomerBean findByUsername(String username) {
 
-		String sql = "SELECT * FROM CUSTOMER WHERE USERNAME = ?";
+		//String sql = "SELECT * FROM CUSTOMER WHERE USERNAME = ?";
+		String sql = "SELECT C.* , A.ACC_NUMBER FROM CUSTOMER C LEFT JOIN ACCOUNT A ON C.CUSTOMER_ID= A.CUSTOMER_CUSTOMER_ID WHERE USERNAME = ?";
 		return this.jdbcTemplate.queryForObject(sql, new CustomerMapper(), username);
 
 	}
@@ -220,6 +258,13 @@ public class CustomerDao {
 			logger.error("Error while deleting user: ", idCustomer);
 		}
 
+	}
+
+	public void updatePassword(String newPassword, int idCustomer) {
+		
+		String sql = "UPDATE CUSTOMER SET PASSWORD = ? WHERE CUSTOMER_ID = ?";
+		this.jdbcTemplate.update(sql, newPassword, idCustomer);
+		
 	}
 
 }

@@ -22,4 +22,10 @@ public class Util {
 		
 		return date;
 	}
+	
+	public static long parseLong(String str) {
+		
+		
+	    return (str==null)? 0:Long.parseLong(str);
+	}
 }

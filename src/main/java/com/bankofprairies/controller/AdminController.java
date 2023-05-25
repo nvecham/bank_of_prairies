@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bankofprairies.bean.AccountBean;
 import com.bankofprairies.bean.CustomerBean;
 import com.bankofprairies.service.AccountService;
 import com.bankofprairies.service.AdminService;
@@ -125,15 +126,19 @@ public class AdminController {
 		String role = req.getParameter("role");
 
 		CustomerBean customer = this.createCustomerBean(null, firstName, lastName, birth, gender, username, password,
-				email, mobile, sin, street, city, province, zip, country, status, role);
+				email, mobile, sin, street, city, province, zip, country, status, role,null);
 
 		this.adminService.addCustomer(customer);
+		
+		String message = String.format("Dear %s,\n\nWelcome to Bank of Prairies! You have been registered successfully.\n\n"
+				+ "Please find your username and password below:\n\nUsername: %s\nPassword: %s\n\nThank you for choosing Bank of Prairies.", 
+				customer.getFirstName() + " " + customer.getLastName(), customer.getUsername(), customer.getPassword());
 
 		this.emailService.sendEmail( // 
 				customer.getEmail(), //
-				"Welcome to Bank of Prairies", //
-				"You are registered successfully. Please find your username and password below:" + "Username : "
-						+ customer.getUsername() + " Password : " + customer.getPassword());
+				"Welcome to Bank of Prairies", message);//
+				//"You are registered successfully. Please find your username and password below:" + "Username : "
+					//	+ customer.getUsername() + " Password : " + customer.getPassword());
 		return "redirect:/list_customers";
 	}
 
@@ -166,9 +171,11 @@ public class AdminController {
 		String country = req.getParameter("country");
 		String status = req.getParameter("status");
 		String role = req.getParameter("role");
+		
+		//String accountNumber = req.getParameter("accountNumber");
 
 		CustomerBean customer = this.createCustomerBean(id, firstName, lastName, birth, gender, username, null, email,
-				mobile, sin, street, city, province, zip, country, status, role);
+				mobile, sin, street, city, province, zip, country, status, role, null);
 
 		this.adminService.updateCustomer(customer);
 		return "redirect:/list_customers";
@@ -186,11 +193,12 @@ public class AdminController {
 
 	private CustomerBean createCustomerBean(String idCustomer, String firstName, String lastName, String birth, String gender,
 			String username, String password, String email, String mobile, String sin, String street, String city,
-			String province, String zip, String country, String status, String role) {
+			String province, String zip, String country, String status, String role, String accountNumber) {
 
+		AccountBean account = new AccountBean(Util.parseLong(accountNumber));
 		
 		CustomerBean customer = new CustomerBean(Util.parseId(idCustomer), firstName,  lastName, Util.parseDate(birth), gender, username,
-				 password,  email,  mobile,  sin,  street,  city,  province, zip, country, status,role,  null);
+				 password,  email,  mobile,  sin,  street,  city,  province, zip, country, status,role,  account);
 
 		return customer;
 

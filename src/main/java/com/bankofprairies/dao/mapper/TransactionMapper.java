@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.bankofprairies.bean.AccountBean;
 import com.bankofprairies.bean.TransactionBean;
 
 public class TransactionMapper implements RowMapper<TransactionBean>{
@@ -28,6 +29,12 @@ public class TransactionMapper implements RowMapper<TransactionBean>{
 		transaction.setTransacDate(rs.getDate("TR_DATE"));
 		
 		//transaction.setTotalDebit(rs.getBigDecimal("TOTALDEBIT"));
+		
+		AccountBean account = new AccountBean();
+		account.setAccountBalance(rs.getBigDecimal("ACC_BALANCE"));
+		
+		transaction.setAccount(account);
+		
 		
 		return transaction;
 	}

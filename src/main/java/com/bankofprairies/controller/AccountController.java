@@ -2,7 +2,6 @@ package com.bankofprairies.controller;
 
 import java.math.BigDecimal;
 import java.security.Principal;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +24,7 @@ import com.bankofprairies.bean.TransactionBean;
 import com.bankofprairies.dao.AccountDao;
 import com.bankofprairies.service.AccountService;
 import com.bankofprairies.service.AdminService;
+import com.bankofprairies.util.Util;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -49,14 +49,15 @@ public class AccountController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@ModelAttribute("username")
-	public String getUsername(Principal principal) {
+	public void getUsername(Principal principal, Model model) {
 		logger.debug(principal.getName());
 		String username = principal.getName();
 		CustomerBean customer = adminService.findByUsername(username);
 		String fullName = customer.getFirstName()+ ' '+customer.getLastName();
-
 		
-		return fullName;
+		model.addAttribute("fullName", fullName);
+		
+		//return fullName;
 	}
 
 	@GetMapping("/customerDashboard")
@@ -190,6 +191,7 @@ public class AccountController {
 		String depositAmountStr = request.getParameter("amount");
 		BigDecimal depositAmount = new BigDecimal(depositAmountStr);
 
+		// Get the comments from the request parameter
 		String transcDescription = request.getParameter("desc");
 
 		// Update the account balance with the deposit amount
@@ -249,6 +251,66 @@ public class AccountController {
 		return "redirect:/allTransactions";
 
 	}
+	
+	@GetMapping("/transferMoney")
+	public String transferMoneyForm(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		CustomerBean customer = adminService.findByUsername(username);
+		int idCustomer = customer.getIdCustomer();
+		AccountBean account = accountService.getAccountById(idCustomer);
+		long fromAccountNumber = account.getAccountNumber();
+		model.addAttribute("accountNumber", fromAccountNumber);
+		return "/transferMoney";
+	}
+	
+	
+	  @PostMapping("/transferMoney") 
+	  public String transferMoney(HttpServletRequest request, Model model) { 
+		  
+		  
+		  logger.debug("Transfer Money");
+	  
+		  // Get the logged in user's account details 
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		  String username = authentication.getName(); 
+		  CustomerBean customer = adminService.findByUsername(username); 
+		  int idCustomer = customer.getIdCustomer(); 
+		  AccountBean account = accountService.getAccountById(idCustomer); 
+		  int accountId = account.getIdAccount();
+	  
+		  //long accountNumber = account.getAccountNumber();
+	  
+		  //AccountBean fromAccount = accountService.getAccountByAccountNumber(fromAccountNumber);
+	  
+		 // AccountBean toAccount = accountService.getAccountByAccountNumber(toAccountNumber);
+		  
+		  //Get the fromAccount account number from the request parameter
+		  String fromAccountNumberStr = request.getParameter("accNum");
+		  long fromAccountNumber = Util.parseLong(fromAccountNumberStr);
+	  
+		  //Get the toAccount account number from the request parameter
+		  String toAccountNumberStr = request.getParameter("toAccNum");
+		  long toAccountNumber = Util.parseLong(toAccountNumberStr);
+	   
+		  // Get the deposit amount from the request parameter 
+		  String depositAmountStr = request.getParameter("amount"); 
+		  BigDecimal depositAmount = new BigDecimal(depositAmountStr);
+	  
+		  // Get the comments from the request parameter 
+		  String transcDescription = request.getParameter("desc");
+	  
+		  // Update the account balance with the deposit amount
+		  accountService.transferMoney(fromAccountNumber, toAccountNumber, depositAmount, transcDescription);	  
+	
+	  
+	  // Redirect to the account details page with a success message
+	  model.addAttribute("successMsg", "Deposit of " + depositAmount +
+	  " successful."); return "redirect:/allTransactions";
+	  
+	  }
+	 
+	
 	
 	 @GetMapping("/cardDetails") 
 	  public String getCardDetails(Model model, Authentication authentication) { 
